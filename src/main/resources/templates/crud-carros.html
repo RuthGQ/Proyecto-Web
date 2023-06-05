@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Title</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+	<h1 style="text-align: center; font-family: Courier New, monospace; font-size: 50px;">Mantenimiento Carros</h1>
+	<br>
+	<div style="font-family: Courier New, monospace;" class="d-flex">
+		<div class="card col-sm-4" >
+			<div class="card-body">
+				<form action="/carro/agregar" method="post" th:object="${carro}" enctype="multipart/form-data">
+				    <!--<input type="text" name="IdCarro" th:field="*{IdCarro}"> -->
+					<div class="form-group">
+						<label for="">Descripcion</label> <input type="text"
+							name="txtDescripcion" id="txtDescripcion" class="form-control" placeholder="Ingrese Descripción" th:field="*{descripcion}">
+					</div>
+					<div class="form-group">
+						<label for="inputMarca">Marca</label> 
+						<select id="cboMarca" name="cboMarca" th:field="*{IdMarca}" class="form-control">
+							<option selected="selected" value="-1">Seleccione...</option>
+							<option th:each="m : ${lstMarca}" th:value="${m.IdMarca}"
+								 th:text="${m.descripcion}" ></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="">Origen</label> <input type="text" id="txtOrigen" name="txtOrigen" placeholder="Ingrese Origen"
+							class="form-control" th:field="*{origen}">
+					</div>
+					<div class="form-group">
+						<label for="">Combustible</label> <input type="text" placeholder="Ingrese Combustible" id="txtCombustible"
+							name="txtCombustible" class="form-control" th:field="*{combustible}">
+					</div>
+					<div class="form-group">
+						<label for="">Precio</label> <input type="number" step="0.01" pattern="[0-9]+([.][0-9]{1,2})?" name="txtPrecio" id="txtPrecio"
+							class="form-control" th:field="*{precio}">
+					</div>
+					<div class="form-group">
+						<label for="">Stock</label><input type="number" class="form-control" pattern="[1-9]+[0-9]*" id="txtStock" name="txtStock" th:field="*{stock}">
+					</div>
+					<button type="submit" name="accion" value="Agregar" class="btn btn-info">Agregar</button>				
+				</form>
+				<div class="col-auto">
+					<form th:action="@{/actualizar}" method="post">
+						<button type="submit" class="btn btn-success" style="position: absolute; margin-top: -38px; left: 100px;">Actualizar</button>
+					</form>
+			     </div>
+				<br>
+				<div class="alert alert-danger" role="alert" th:if="${mensaje2}" th:text="${mensaje2}"></div>
+				<br>
+				<div class="alert alert-info" role="alert" th:if="${mensaje}" th:text="${mensaje}"></div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<table class="table table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th>DESCRIPCIÓN</th>
+						<th>MARCA</th>
+						<th>ORIGEN</th>
+						<th>COMBUSTIBLE</th>
+						<th>PRECIO</th>
+						<th>STOCK</th>
+						<th colspan="2">ACCIONES</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c : ${lstCarros}">
+						<td th:text="${c.Descripcion}">xx</td>
+						<td th:value="${c.IdMarca}" th:text="${c.objMarca.Descripcion}">xx</td>
+						<td th:text="${c.Origen}">xx</td>
+						<td th:text="${c.Combustible}">xx</td>
+						<td th:text="${c.Precio}">xx</td>
+						<td th:text="${c.Stock}">xx</td>
+						<td>
+						<!--<a href="">  -->
+						<form method="get" th:action="@{/cargaActualizarCarro}">
+						<input type="hidden" name="IdCarro" th:value="${c.IdCarro}">
+						<button><img alt="" src="imgs/editar.png" width="20px"></button>
+						</form>
+						<form method="get" th:action="@{/eliminarCarro}">
+						<input type="hidden" name="IdCarro" th:value="${c.IdCarro}">
+						<button style="position: absolute; margin-top: -30px; right: 55px;"><img alt="" src="imgs/eliminar.png" width="20px" ></button>
+						</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous">
+
+</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous">
+
+</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous">
+
+</script>
+</body>
+</html>
