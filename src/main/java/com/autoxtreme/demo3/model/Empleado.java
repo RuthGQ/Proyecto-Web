@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class Empleado {
     @Id
-    @Column(name = "IdEmpleado")
-    private int IdEmpleado;
+    @Column(name = "id_empleado")
+    private Integer IdEmpleado;
 
     @Column(name = "Dni")
     private String dni;

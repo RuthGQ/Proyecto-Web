@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/login")
@@ -21,6 +22,14 @@ public class LoginController {
     public String cargarPag(Model model) {
         model.addAttribute("empleado", new Empleado());
         return "index";
+    }
+    
+    @GetMapping("/cargaEmpleado")
+    public String cargaEmpleado(@ModelAttribute Empleado empleado, Model model) {
+    	model.addAttribute("empleado", new Empleado());
+    	model.addAttribute("empleado", emRep.findById(empleado.getIdEmpleado()));
+        model.addAttribute("lstEmpleado", emRep.findAll());
+        return "menu-principal";
     }
 
     @PostMapping("/validar")

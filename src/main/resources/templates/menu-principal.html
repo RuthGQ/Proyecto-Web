@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -59,24 +59,26 @@
 
   </div>
   <div class="w3-dropdown-hover w3-right w3-container">
+  <form th:action="@{/cargaEmpleado}" method="get" th:object="${empleado}">
+   <input type="hidden" name="IdEmpleado" th:value="${empleado.IdEmpleado}" />
     <button style="border: none;font-size: 18px"
             class="btn btn-outline-light dropdown-toggle w3-button"
             type="button" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-      <strong>Usuario</strong>
+            aria-haspopup="true" aria-expanded="false">      
+      <strong th:text="${empleado.nom}"></strong>
     </button>
     <div class="dropdown-menu w3-dropdown-content w3-bar-block"
          style="right: 0px;">
       <a style="text-align: center;" class="w3-bar-item w3-button"
-         href="#"> <img src="" alt="70" width="60">
+         href="#"> <img th:src="@{'/imgs/usuarios/' + ${empleado.IdEmpleado} + '.png'}" alt="70" width="60">    
       </a> <a style="text-align: center;" class="w3-bar-item w3-button"
-              href="#"></a> <a style="text-align: center;"
-                               class="w3-bar-item w3-button" href="#"></a>
+              href="#" th:text="${empleado.user}"></a><a style="text-align: center;"
+                               class="w3-bar-item w3-button" href="#" th:text="${empleado.tel}"></a>
       <div class="dropdown-divider"></div>
-      <a style="text-align: center;" class="w3-bar-item w3-button"
-         th:href="@{/login/cargar}">Salir</a>
+      <a style="text-align: center;" class="w3-bar-item w3-button" th:href="@{/login/cargar}">Salir</a>
     </div>
-  </div>
+     </form>
+  </div> 
 </nav>
 <div class="m-4" style="height: 530px">
   <iframe name="myFrame" style="height: 100%; width: 100%; border: none"></iframe>

@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 public class TipoEmpleado {
     @Id
-    @Column(name = "IdTipo")
+    @Column(name = "idtipo")
     private int IdTipo;
 
     @Column(name = "Descripcion")
