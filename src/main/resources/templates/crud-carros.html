@@ -20,7 +20,7 @@
 					</div>
 					<div class="form-group">
 						<label for="inputMarca">Marca</label> 
-						<select id="cboMarca" name="cboMarca" th:field="*{IdMarca}" class="form-control">
+						<select id="IdMarca" name="IdMarca" th:field="*{IdMarca}" class="form-control">
 							<option selected="selected" value="-1">Seleccione...</option>
 							<option th:each="m : ${lstMarca}" th:value="${m.IdMarca}"
 								 th:text="${m.descripcion}" ></option>
@@ -76,11 +76,11 @@
 						<!--<a href="">  -->
 						<form method="post" th:action="@{/cargaActualizarCarro}">
 						<input type="hidden" name="IdCarro" th:value="${c.IdCarro}">
-						<button><img alt="" src="imgs/editar.png" width="20px"></button>
+						<button><img alt="" th:src="@{~/imgs/editar.png}" width="20px"></button>
 						</form>
 						<form method="get" th:action="@{/eliminarCarro}">
 						<input type="hidden" name="IdCarro" th:value="${c.IdCarro}">
-						<button style="position: absolute; margin-top: -30px; right: 30px;"><img alt="" src="imgs/eliminar.png" width="20px" ></button>
+						<button style="position: absolute; margin-top: -30px; right: 30px;"><img alt="" th:src="@{~/imgs/eliminar.png}" width="20px" ></button>
 						</form>
 						</td>
 					</tr>

@@ -2,43 +2,39 @@ package com.autoxtreme.demo3.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
+import java.util.Date;
+
+import jakarta.persistence.*;
 import jakarta.persistence.Id;
 import lombok.Data;
 
 @Entity
+@Table(name = "tb_ventas")
 @Data
 public class Venta {
 
-    @Id
-    @Column(name = "IdVentas")
-    private int id;
-    private int item;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_ventas")
+    private int idVentas;
 
-    @Column(name = "IdCliente")
-    private int idcliente;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente objCliente;
 
-    @Column(name = "IdEmpleado")
-    private int idempleado;
-
-
-    @Column(name = "IdCarro")
-    private int idcarro;
+    @ManyToOne
+    @JoinColumn(name = "id_empleado")
+    private Empleado objEmpleado;
 
     @Column(name = "NumeroSerie")
-    private String Numserie;
-    private String DescripcionC;
+    private String numeroSerie;
 
     @Column(name = "FechaVentas")
-    private String fecha;
-
-    @Column(name = "PrecioVenta")
-    private double precio;
-
-    @Column(name = "Cantidad")
-    private int cantidad;
-    private double subtotal;
+    private Date fechaVentas;
 
     @Column(name = "Monto")
     private double monto;
-
+    
+    
 }

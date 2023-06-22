@@ -7,14 +7,15 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "tb_cliente")
 @Data
+
 public class Cliente {
     @Id
-    @Column(name = "IdCliente")
-    private int idCli ;
+    @Column(name = "id_cliente")
+    private int id_cliente ;
 
-    @Column(name = "Dni")
+    @Column(name = "dni")
     private String dni;
 
     @Column(name = "Nombres")
@@ -27,8 +28,11 @@ public class Cliente {
     private String dir;
 
     @Column(name = "Correo")
-    private String correo;
+    private String corre;
 
     @Column(name = "Telefono")
     private int tel;
+ 
 }
+
+
